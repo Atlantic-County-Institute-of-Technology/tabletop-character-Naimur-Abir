@@ -24,7 +24,7 @@ class Character{
     protected int AC;
     protected ArrayList<String> Feats;
 
-    public Character(){    //base constructor for the character where all the starting stats are ten, the name is just "Player", and the feats gets initializes
+    public Character(){    //base constructor for the character where all the starting stats are ten, the name is just "Player", and the feats get initializes
         this.STR = 10;
         this.DEX = 10;
         this.CON = 10;
@@ -52,16 +52,16 @@ class Character{
         this.Feats = new ArrayList<>();  //initializes the Feats ArrayList
     }
 
-    public int stat_initializer(){       //"rolls" a six sided dice and retuns the number to be assigned to a stat
+    public int stat_initializer(){       //"rolls" a six-sided dice and returns the number to be assigned to a stat
         Random randInt = new Random();
         return randInt.nextInt(14) + 3;
     }
 
     public void calculateHitPoints(){    //calculates the hit points based on the level
-        if(this.Level == 1){             //if the level is one then it sets the level to the constitution + 10
+        if(this.Level == 1){             //if the level is one, then it sets the level to the constitution + 10
             this.HP = 10 + this.CON;   
         }
-        else{                            //if the level isn't one then it sets the hp to it self plus the level miuns 1 times the 6 + constitution
+        else{                            //if the level isn't one, then it sets the hp to itself plus the level minus 1 times the 6 + constitution
             this.HP = this.HP + ((this.Level - 1) * (6 + this.CON));
         }
     }
@@ -70,7 +70,7 @@ class Character{
         this.AC = 10 + this.DEX;
     }
 
-    public int getAbilityModifier(int score){    //gets the ability modifirer back by runing it through the calculation of subtracting ten and then dividing that by two and rounding down
+    public int getAbilityModifier(int score){    //gets the ability modifier back by runing it through the calculation of subtracting ten and then dividing that by two and rounding down
         return (score - 10)/2;
     }
     public void levelUp(){                //level up sets the level to itself + 1 and recalculates the health and armor class
@@ -83,7 +83,7 @@ class Character{
         this.Feats.add(feat);
     }
 
-    public String toString() {           //toString overide to make the information more readable
+    public String toString() {           //toString override to make the information more readable
         return "Character: " + Name+
                 " | Level: " + Level +
                 "\nHP: " + HP + " | AC: " + AC +
@@ -97,10 +97,11 @@ class Character{
     }
 }
 
-class barbarian extends Character{      //sub class of the barbarian which extends character
-        barbarian(){                    //defaut constructor that doesn't take in any parameters
+class barbarian extends Character{      //subclass of the barbarian which extends character
+
+    barbarian(){                        //default constructor that doesn't take in any parameters
         super();                        //calls the default constructor for the character parent class
-        this.STR += 2;                  //increases the strenght and constitution of the class but 2 and one respectively
+        this.STR += 2;                  //increases the strength and constitution of the class but 2 and one respectively
         this.CON += 1;
         this.addFeat("Rage");           //appends the feats of rage and unarmored defense
         this.addFeat("Unarmored Defense");
@@ -108,7 +109,7 @@ class barbarian extends Character{      //sub class of the barbarian which exten
     
     barbarian(String name, int level){  //constructor with the arguments for the name and level of the character 
         super(name, level);             //calls the constructor for the parent class Character witht the arguments name and level passed in
-        this.STR += 2;                  //increases the strenght and constitution of the class but 2 and one respectively
+        this.STR += 2;                  //increases the strength and constitution of the class but 2 and one respectively
         this.CON += 1;        
         this.addFeat("Rage");           //appends the feats of rage and unarmored defense
         this.addFeat("Unarmored Defense");
