@@ -98,18 +98,19 @@ class Character{
 }
 
 class barbarian extends Character{      //sub class of the barbarian which extends character
-    barbarian(String name, int level){
-        super(name, level);
-        this.STR += 2;
+        barbarian(){                    //defaut constructor that doesn't take in any parameters
+        super();                        //calls the default constructor for the character parent class
+        this.STR += 2;                  //increases the strenght and constitution of the class but 2 and one respectively
         this.CON += 1;
-        this.addFeat("Rage");
+        this.addFeat("Rage");           //appends the feats of rage and unarmored defense
         this.addFeat("Unarmored Defense");
     }
-    barbarian(){
-        super();
-        this.STR += 2;
-        this.CON += 1;
-        this.addFeat("Rage");
+    
+    barbarian(String name, int level){  //constructor with the arguments for the name and level of the character 
+        super(name, level);             //calls the constructor for the parent class Character witht the arguments name and level passed in
+        this.STR += 2;                  //increases the strenght and constitution of the class but 2 and one respectively
+        this.CON += 1;        
+        this.addFeat("Rage");           //appends the feats of rage and unarmored defense
         this.addFeat("Unarmored Defense");
     }
 }
