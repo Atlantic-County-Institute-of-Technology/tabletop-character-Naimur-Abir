@@ -3,14 +3,16 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Character c1 = new Character();
-        System.out.println(c1);
-        Character c2 = new Character("Bingus", 1);
-        System.out.println(c2);
+        Character c1 = new Character();    //just here to generate the objects and print them out for testing purposes, nothing new here
+        System.out.println(c1 + "\n");
+        Character c2 = new barbarian("Bingus", 1);
+        System.out.println(c2 + "\n");
+        Character c3 = new barbarian();
+        System.out.println(c3);
     }
 }
 class Character{
-    protected int STR;
+    protected int STR;    //initializes the starting variables and their data types except for the list
     protected int DEX;
     protected int CON;
     protected int INT;
@@ -22,7 +24,7 @@ class Character{
     protected int AC;
     protected ArrayList<String> Feats;
 
-    public Character(){
+    public Character(){    //base constructor for the character where all the starting stats are ten, the name is just "Player", and the feats gets initializes
         this.STR = 10;
         this.DEX = 10;
         this.CON = 10;
@@ -36,26 +38,26 @@ class Character{
         this.Feats = new ArrayList<>();
     }
 
-    public Character(String name, int level){
-        this.STR = stat_initializer();
+    public Character(String name, int level){    //constructs the character with the arguments of name and level
+        this.STR = stat_initializer();    //calls the function stat_initializer() for generating the stats
         this.DEX = stat_initializer();
         this.CON = stat_initializer();
         this.INT = stat_initializer();
         this.WIS = stat_initializer();
         this.CHA = stat_initializer();
-        this.Name = name;
+        this.Name = name;                //sets the arguments of name and level to Name and Level.
         this.Level = level;
-        calculateHitPoints();
+        calculateHitPoints();            //calls the functions calculateHitPoints and calculateArmorClass
         calculateArmorClass();
-        this.Feats = new ArrayList<>();
+        this.Feats = new ArrayList<>();  //initializes the Feats ArrayList
     }
 
-    public int stat_initializer(){
+    public int stat_initializer(){       //"rolls" a six sided dice and retuns the number to be assigned to a stat
         Random randInt = new Random();
         return randInt.nextInt(14) + 3;
     }
 
-    public void calculateHitPoints(){
+    public void calculateHitPoints(){    //calculates the hit points based on 
         if(this.Level == 1){
             this.HP = 10 + this.CON;
         }
@@ -92,5 +94,22 @@ class Character{
                 " | WIS: " + WIS +
                 " | CHA: " + CHA +
                 "\nFeats: " + Feats;
+    }
+}
+
+class barbarian extends Character{
+    barbarian(String name, int level){
+        super(name, level);
+        this.STR += 2;
+        this.CON += 1;
+        this.addFeat("Rage");
+        this.addFeat("Unarmored Defense");
+    }
+    barbarian(){
+        super();
+        this.STR += 2;
+        this.CON += 1;
+        this.addFeat("Rage");
+        this.addFeat("Unarmored Defense");
     }
 }
