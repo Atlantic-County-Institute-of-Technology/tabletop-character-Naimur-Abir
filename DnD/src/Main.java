@@ -57,33 +57,33 @@ class Character{
         return randInt.nextInt(14) + 3;
     }
 
-    public void calculateHitPoints(){    //calculates the hit points based on 
-        if(this.Level == 1){
-            this.HP = 10 + this.CON;
+    public void calculateHitPoints(){    //calculates the hit points based on the level
+        if(this.Level == 1){             //if the level is one then it sets the level to the constitution + 10
+            this.HP = 10 + this.CON;   
         }
-        else{
+        else{                            //if the level isn't one then it sets the hp to it self plus the level miuns 1 times the 6 + constitution
             this.HP = this.HP + ((this.Level - 1) * (6 + this.CON));
         }
     }
 
-    public void calculateArmorClass(){
+    public void calculateArmorClass(){    //sets the armor class to 10 + the dexterity 
         this.AC = 10 + this.DEX;
     }
 
-    public int getAbilityModifier(int score){
+    public int getAbilityModifier(int score){    //gets the ability modifirer back by runing it through the calculation of subtracting ten and then dividing that by two and rounding down
         return (score - 10)/2;
     }
-    public void levelUp(){
+    public void levelUp(){                //level up sets the level to itself + 1 and recalculates the health and armor class
         this.Level += 1;
         calculateHitPoints();
         calculateArmorClass();
     }
 
-    public void addFeat(String feat){
+    public void addFeat(String feat){    //addFeat appends the feats ArrayList with the argument passed in
         this.Feats.add(feat);
     }
 
-    public String toString() {
+    public String toString() {           //toString overide to make the information more readable
         return "Character: " + Name+
                 " | Level: " + Level +
                 "\nHP: " + HP + " | AC: " + AC +
@@ -97,7 +97,7 @@ class Character{
     }
 }
 
-class barbarian extends Character{
+class barbarian extends Character{      //sub class of the barbarian which extends character
     barbarian(String name, int level){
         super(name, level);
         this.STR += 2;
